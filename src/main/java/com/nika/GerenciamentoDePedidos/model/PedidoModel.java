@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity(name = "ProdutosModel")
 @Table(name = "tb_pedidos")
 public class PedidoModel {
-    @id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -18,8 +18,17 @@ public class PedidoModel {
     @Column(name = "ValorTotalPedido")
     private BigDecimal valorTotal;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "StatusPedido")
-    private String status;
+    private PedidoEnum status;
+
+    public PedidoEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(PedidoEnum status) {
+        this.status = status;
+    }
 
     public Long getId() {
         return id;
@@ -45,11 +54,4 @@ public class PedidoModel {
         this.valorTotal = valorTotal;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
